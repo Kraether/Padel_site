@@ -20,6 +20,25 @@
 </section>
 
 <section class="panel">
+  <h2>Tilføj par manuelt</h2>
+  <div class="pair-form">
+    <div class="pair-form-player">
+      <strong>Spiller 1</strong>
+      <input type="text" id="p1Name" placeholder="Navn *" required>
+      <input type="text" id="p1Rankedin" placeholder="Rankedin (valgfri)">
+      <input type="text" id="p1PadelLink" placeholder="PadelLink niveau (valgfri)">
+    </div>
+    <div class="pair-form-player">
+      <strong>Spiller 2</strong>
+      <input type="text" id="p2Name" placeholder="Navn *" required>
+      <input type="text" id="p2Rankedin" placeholder="Rankedin (valgfri)">
+      <input type="text" id="p2PadelLink" placeholder="PadelLink niveau (valgfri)">
+    </div>
+  </div>
+  <button onclick="addPairManually()">Tilføj par</button>
+</section>
+
+<section class="panel">
   <h2>Seedings (drag & drop)</h2>
   <ul id="teamList" class="team-list"></ul>
 </section>

@@ -91,6 +91,40 @@ function importTeams() {
   alert("Import gennemført.");
 }
 
+/* --- Manuelt tilføj par --- */
+function addPairManually() {
+  const p1Name = document.getElementById("p1Name").value.trim();
+  const p2Name = document.getElementById("p2Name").value.trim();
+
+  if (!p1Name || !p2Name) {
+    alert("Begge spilleres navne er påkrævet.");
+    return;
+  }
+
+  const p1 = {
+    name: p1Name,
+    rankedin: document.getElementById("p1Rankedin").value.trim(),
+    padelLink: document.getElementById("p1PadelLink").value.trim()
+  };
+  const p2 = {
+    name: p2Name,
+    rankedin: document.getElementById("p2Rankedin").value.trim(),
+    padelLink: document.getElementById("p2PadelLink").value.trim()
+  };
+
+  teams.push({
+    teamName: `${p1.name} / ${p2.name}`,
+    players: [p1, p2]
+  });
+
+  save();
+  renderTeams();
+
+  // Ryd formular
+  ["p1Name","p1Rankedin","p1PadelLink","p2Name","p2Rankedin","p2PadelLink"]
+    .forEach(id => { document.getElementById(id).value = ""; });
+}
+
 /* --- Render seedings --- */
 function renderTeams() {
   const list = document.getElementById("teamList");

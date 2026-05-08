@@ -59,6 +59,35 @@ button:hover {
   background: #0064d1;
 }
 
+/* Manual pair form */
+.pair-form {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.pair-form-player {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.pair-form-player input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.pair-form-player strong {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
 /* Seedings list */
 .team-list {
   list-style: none;
