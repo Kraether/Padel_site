@@ -11,7 +11,10 @@
 
 <section class="panel">
   <h2>Importér data fra Excel</h2>
-  <p class="hint">Indsæt 16 linjer i formatet: Fornavn Efternavn [TAB] Rankedin [TAB] PadelLink</p>
+  <p class="hint">
+    Indsæt 16 linjer i formatet:<br>
+    Fornavn[TAB]Efternavn[TAB]Rankedin[TAB]PadelLink
+  </p>
   <textarea id="importData" placeholder="Indsæt data her..." rows="10"></textarea>
   <button onclick="importTeams()">Importér</button>
 </section>

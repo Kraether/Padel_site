@@ -1,11 +1,15 @@
 :root {
   --bracket-scale: 1;
+  --card-bg: #ffffff;
+  --card-border: #dcdcdc;
+  --card-shadow: rgba(0,0,0,0.08);
+  --accent: #007bff;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: system-ui, Arial, sans-serif;
   padding: 20px;
-  background: #f5f5f5;
+  background: #f3f3f3;
   color: #222;
 }
 
@@ -14,47 +18,62 @@ h1 {
 }
 
 .panel {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
+.hint {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+/* Textarea (import) */
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-family: monospace;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  resize: vertical;
+  box-sizing: border-box;
 }
 
+/* Buttons */
 button {
-  padding: 8px 14px;
+  padding: 10px 16px;
   cursor: pointer;
-  border-radius: 4px;
-  border: 1px solid #007bff;
-  background: #007bff;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
   color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 button:hover {
   background: #0064d1;
 }
 
+/* Seedings list */
 .team-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .team-item {
-  background: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 8px 10px;
-  margin-bottom: 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
   cursor: grab;
+  box-shadow: 0 2px 4px var(--card-shadow);
 }
 
 .team-item.dragging {
@@ -65,6 +84,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+  font-size: 13px;
 }
 
 .team-players {
@@ -72,12 +92,20 @@ button:hover {
   margin-top: 4px;
 }
 
+.team-players div {
+  margin-bottom: 2px;
+}
+
+/* Controls over bracket */
 .controls {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
+/* Bracket layout */
 #bracketWrapper {
   overflow-x: auto;
   padding-bottom: 10px;
@@ -85,36 +113,92 @@ button:hover {
 
 .bracket {
   display: flex;
+  gap: 40px;
   transform-origin: top left;
   transform: scale(var(--bracket-scale));
 }
 
+/* Rounds */
 .round {
   display: flex;
   flex-direction: column;
-  margin-right: 40px;
+  gap: 30px;
+  min-width: 260px;
 }
 
 .round-title {
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  text-align: center;
 }
 
+/* Match cards */
 .match {
-  background: #ffffff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 12px;
   width: 260px;
-  border-radius: 6px;
+  box-shadow: 0 2px 6px var(--card-shadow);
+  position: relative;
   font-size: 12px;
 }
 
-.match hr {
-  margin: 8px 0;
+.match strong {
+  font-size: 13px;
+  color: #000;
 }
 
-.placeholder {
-  color: #999;
-  font-style: italic;
+.match hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* Connecting lines between rounds */
+.match::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  width: 20px;
+  height: 2px;
+  background: #ccc;
+}
+
+.round:last-child .match::after {
+  display: none;
+}
+
+/* Mobile view */
+@media (max-width: 700px) {
+  body {
+    padding: 10px;
+  }
+
+  .panel {
+    padding: 14px;
+  }
+
+  .bracket {
+    gap: 20px;
+  }
+
+  .match {
+    width: 220px;
+    padding: 10px;
+  }
+
+  .round {
+    min-width: 220px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
 }
