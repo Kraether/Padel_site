@@ -28,9 +28,9 @@
   <h2>Turneringstræ</h2>
 
   <div class="controls">
-    <label for="scaleRange">Størrelse:</label>
-    <input id="scaleRange" type="range" min="60" max="140" value="100" oninput="updateScale(this.value)">
-    <span id="scaleValue">100%</span>
+    <label for="scaleRange">Antal par:</label>
+    <input id="scaleRange" type="range" min="4" max="16" step="4" value="8" oninput="updateScale(this.value)">
+    <span id="scaleValue">8 par</span>
     <button onclick="generateBracket()">Generér bracket</button>
   </div>
 

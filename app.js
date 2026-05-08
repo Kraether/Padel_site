@@ -42,10 +42,11 @@ function importTeams() {
     return;
   }
 
+  const pairCount = getPairCount();
   const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
 
-  if (lines.length !== 16) {
-    alert("Der skal være præcis 16 linjer (2 spillere pr. par × 8 par).");
+  if (lines.length !== pairCount * 2) {
+    alert("Der skal være præcis " + (pairCount * 2) + " linjer (2 spillere pr. par × " + pairCount + " par).");
     return;
   }
 
@@ -72,7 +73,7 @@ function importTeams() {
 
   // Byg teams (linje 1+2 = par 1, 3+4 = par 2, osv.)
   teams = [];
-  for (let i = 0; i < 16; i += 2) {
+  for (let i = 0; i < pairCount * 2; i += 2) {
     const p1 = parsedPlayers[i];
     const p2 = parsedPlayers[i + 1];
 
@@ -167,16 +168,20 @@ function generateBracket() {
   if (!bracket) return;
   bracket.innerHTML = "";
 
-  if (teams.length !== 8) {
-    alert("Du skal have præcis 8 par for denne bracket.");
+  const pairCount = getPairCount();
+  if (teams.length !== pairCount) {
+    alert("Du skal have præcis " + pairCount + " par for denne bracket.");
     return;
   }
 
+  const roundTitles = { 4: "Semifinaler", 8: "Kvartfinaler", 16: "Ottendedelsfinaler" };
+  const roundTitle = roundTitles[pairCount] || (pairCount + "-dobbelt");
+
   const round1 = document.createElement("div");
   round1.className = "round";
-  round1.innerHTML = `<div class="round-title">Kvartfinaler</div>`;
+  round1.innerHTML = `<div class="round-title">${roundTitle}</div>`;
 
-  for (let i = 0; i < 8; i += 2) {
+  for (let i = 0; i < pairCount; i += 2) {
     const t1 = teams[i];
     const t2 = teams[i + 1];
 
@@ -207,14 +212,17 @@ function generateBracket() {
   bracket.appendChild(round1);
 }
 
-/* --- Skalering --- */
+/* --- Antal par --- */
+function getPairCount() {
+  const el = document.getElementById("scaleRange");
+  return el ? Number(el.value) : 8;
+}
+
 function updateScale(value) {
-  const scale = Number(value) / 100;
-  document.documentElement.style.setProperty("--bracket-scale", scale);
   const el = document.getElementById("scaleValue");
-  if (el) el.textContent = value + "%";
+  if (el) el.textContent = value + " par";
 }
 
 /* Init */
 renderTeams();
-updateScale(100);
+updateScale(8);
