@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Padel Turneringstræ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Padel Doubler – 8 par</h1>
+
+<section class="panel">
+  <h2>Importér data fra Excel</h2>
+  <p class="hint">Indsæt 16 linjer i formatet: Fornavn Efternavn [TAB] Rankedin [TAB] PadelLink</p>
+  <textarea id="importData" placeholder="Indsæt data her..." rows="10"></textarea>
+  <button onclick="importTeams()">Importér</button>
+</section>
+
+<section class="panel">
+  <h2>Seedings (drag & drop)</h2>
+  <ul id="teamList" class="team-list"></ul>
+</section>
+
+<section class="panel">
+  <h2>Turneringstræ</h2>
+
+  <div class="controls">
+    <label for="scaleRange">Størrelse:</label>
+    <input id="scaleRange" type="range" min="60" max="140" value="100" oninput="updateScale(this.value)">
+    <span id="scaleValue">100%</span>
+    <button onclick="generateBracket()">Generér bracket</button>
+  </div>
+
+  <div id="bracketWrapper">
+    <div id="bracket" class="bracket"></div>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
